@@ -1,0 +1,4 @@
+github.com/devries/advent_of_code_2022 v0.0.0-20221020180430-05498ac54e1c h1:R6gk2mDOBQa8dkWQuB8OV0ZsfhfbCMo3aMRH15cCAzg=
+github.com/devries/advent_of_code_2022 v0.0.0-20221020180430-05498ac54e1c/go.mod h1:+phjDUv7GDPMark8sUOOYXxrdqOqZ8JwOiJzFSCBAbs=
+github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
+github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
