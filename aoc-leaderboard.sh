@@ -5,9 +5,9 @@ leaderboard=@@DEFAULT_LEADERBOARD@@
 
 function show_help {
   echo "Usage: $0 [OPTIONS]"
-  echo "  -h -- help"
-  echo "  -y [year] -- get leaderboard for given year (default $year)"
-  echo "  -l [leaderboard] -- get leaderboard number (default $leaderboard)"
+  echo "  -h         show help"
+  echo "  -y int     leaderboard for given year (default $year)"
+  echo "  -l int     leaderboard number (default $leaderboard)"
 }
 
 if [ -z "${AOC_SESSION}" ]; then
