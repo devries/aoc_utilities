@@ -22,6 +22,7 @@ func myUsage() {
 func main() {
 	now := time.Now()
 	day := pflag.IntP("day", "d", now.Day(), "Advent of Code Day")
+	year := pflag.IntP("year", "y", now.Year(), "Advent of Code Year")
 	helpFlag := pflag.BoolP("help", "h", false, "show help")
 
 	pflag.Usage = myUsage
@@ -49,7 +50,7 @@ func main() {
 		}
 		defer f.Close()
 
-		if err := tpl.Execute(f, *day); err != nil {
+		if err := tpl.Execute(f, struct{ Year, Day int }{*year, *day}); err != nil {
 			fmt.Fprintf(os.Stderr, "Error executing template for file %s: %s\n", tpl.Name(), err)
 			os.Exit(3)
 		}

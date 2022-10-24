@@ -5,11 +5,11 @@ import (
 	"io"
 	"os"
 
-	"github.com/devries/advent_of_code_2022/utils"
+	"github.com/devries/advent_of_code_{{ .Year }}/utils"
 	"github.com/spf13/pflag"
 )
 
-const inputfile = "../inputs/day{{ printf `%02d` . }}.txt"
+const inputfile = "../inputs/day{{ printf `%02d` .Day }}.txt"
 
 func main() {
 	pflag.Parse()
