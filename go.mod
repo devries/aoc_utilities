@@ -1,4 +1,4 @@
-module github.com/devries/aoc-utilities
+module github.com/devries/aoc_utilities
 
 go 1.19
 
