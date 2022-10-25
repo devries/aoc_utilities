@@ -9,7 +9,7 @@ TEMPLATES := aoc-start/template/main.go aoc-start/template/main_test.go
 DEFAULT_LEADERBOARD := 534400
 .PHONY: build clean install
 
-build: $(GO_BUILDS) $(SH_BUILDS)
+build: $(GO_BUILDS) $(SH_BUILDS) ## Build all binaries (default)
 
 build/aoc: aoc.sh Makefile
 	mkdir -p build
@@ -40,4 +40,8 @@ $(GO_INSTALLS) $(SH_INSTALLS): $(PREFIX)/bin/%: build/%
 	install -d $(PREFIX)/bin
 	install -m 755 $< $@
 
-install: $(GO_INSTALLS) $(SH_INSTALLS)
+install: $(GO_INSTALLS) $(SH_INSTALLS) ## Install all binaries
+
+help: ## Show this help
+	@echo "These are the make commands for AoC Utilities.\n"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
