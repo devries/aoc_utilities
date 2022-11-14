@@ -1,10 +1,11 @@
+cat <<'EOF'
 _aoc_completion() {
   local cmd
 
   if [[ "$COMP_CWORD" -lt "2" ]]
   then
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=($(compgen -W "download leaderboard scores start" -- "$cur"))
+    COMPREPLY=($(compgen -W "download leaderboard scores start completion" -- "$cur"))
     return
   fi
 
@@ -39,4 +40,4 @@ _aoc_start_completion() {
 }
 
 complete -F _aoc_completion aoc
-
+EOF

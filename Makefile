@@ -1,5 +1,5 @@
 GO_PROGRAMS := aoc-download aoc-start aoc-scores
-SH_SCRIPTS := aoc.sh aoc-leaderboard.sh
+SH_SCRIPTS := aoc.sh aoc-leaderboard.sh aoc-completion.sh
 PREFIX := /usr/local
 GO_BUILDS := $(patsubst %,build/%,$(GO_PROGRAMS))
 SH_BUILDS := $(patsubst %.sh,build/%,$(SH_SCRIPTS))
@@ -19,6 +19,11 @@ build/aoc: aoc.sh Makefile
 build/aoc-leaderboard: aoc-leaderboard.sh Makefile
 	mkdir -p build
 	sed -e 's/@@DEFAULT_LEADERBOARD@@/$(DEFAULT_LEADERBOARD)/g' < $< > $@
+	chmod ugo+x $@
+
+build/aoc-completion: aoc-completion.sh Makefile
+	mkdir -p build
+	cp $< $@
 	chmod ugo+x $@
 
 go.sum: Makefile go.mod

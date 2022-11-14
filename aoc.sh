@@ -21,4 +21,5 @@ cat <<\EOF
   leaderboard: download your leaderboard
   scores:      print out scores from leaderboard file
   start:       create skeleton code for an AoC problem
+  completion:  write bash completion script to stdout
 EOF
