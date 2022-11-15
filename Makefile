@@ -11,12 +11,12 @@ DEFAULT_LEADERBOARD := 534400
 
 build: $(GO_BUILDS) $(SH_BUILDS) ## Build all binaries (default)
 
-build/aoc: aoc.sh Makefile
+build/aoc: aoc.sh
 	mkdir -p build
 	cp $< $@
 	chmod ugo+x $@
 
-build/aoc-leaderboard: aoc-leaderboard.sh Makefile
+build/aoc-leaderboard: aoc-leaderboard.sh
 	mkdir -p build
 	sed -e 's/@@DEFAULT_LEADERBOARD@@/$(DEFAULT_LEADERBOARD)/g' < $< > $@
 	chmod ugo+x $@
@@ -26,14 +26,14 @@ build/aoc-completion: aoc-completion.sh Makefile
 	cp $< $@
 	chmod ugo+x $@
 
-go.sum: Makefile go.mod
+go.sum: go.mod
 	go mod tidy
 
-build/aoc-start: Makefile go.mod go.sum aoc-start/main.go $(TEMPLATES)
+build/aoc-start: go.mod go.sum aoc-start/main.go $(TEMPLATES)
 	mkdir -p build
 	go build -o $@ ./$(notdir $@)
 
-build/aoc-%: Makefile go.mod go.sum aoc-%/main.go
+build/aoc-%: go.mod go.sum aoc-%/main.go
 	mkdir -p build
 	go build -o $@ ./$(notdir $@)
 
