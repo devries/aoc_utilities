@@ -31,7 +31,7 @@ _aoc_leaderboard_completion() {
 
 _aoc_scores_completion() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=($(compgen -f -- "$cur"))
+  COMPREPLY=()
 }
 
 _aoc_start_completion() {
@@ -39,5 +39,5 @@ _aoc_start_completion() {
   COMPREPLY=($(compgen -W "-d --day -h --help -y --year" -- "$cur"))
 }
 
-complete -F _aoc_completion aoc
+complete -o default -F _aoc_completion aoc
 EOF
