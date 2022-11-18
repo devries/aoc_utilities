@@ -3,7 +3,7 @@
 year=$(date +'%Y')
 leaderboard=@@DEFAULT_LEADERBOARD@@
 
-function show_help {
+show_help() {
   echo "Usage: $0 [OPTIONS]"
   echo "  -h         show help"
   echo "  -y int     leaderboard for given year (default $year)"

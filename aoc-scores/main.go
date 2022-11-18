@@ -25,6 +25,16 @@ func (v *StarTs) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type Identifier string
+
+func (v *Identifier) UnmarshalJSON(data []byte) error {
+	val := string(data)
+
+	*v = Identifier(strings.Trim(val, `"'`))
+
+	return nil
+}
+
 type Completion struct {
 	GetStarTs StarTs `json:"get_star_ts"`
 }
@@ -34,7 +44,7 @@ type Member struct {
 	CompletionDayLevel map[int]map[int]Completion `json:"completion_day_level"`
 	Stars              int                        `json:"stars"`
 	GlobalScore        int                        `json:"global_score"`
-	Id                 string                     `json:"id"`
+	Id                 Identifier                 `json:"id"`
 	Name               string                     `json:"name"`
 	LastStarTs         StarTs                     `json:"last_star_ts"`
 }
@@ -42,7 +52,7 @@ type Member struct {
 type Scoreboard struct {
 	Members map[int]Member `json:"members"`
 	Event   string         `json:"event"`
-	OwnerId string         `json:"owner_id"`
+	OwnerId Identifier     `json:"owner_id"`
 }
 
 type UserSortable struct {
