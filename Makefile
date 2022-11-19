@@ -1,6 +1,6 @@
 GO_PROGRAMS := aoc-download aoc-start aoc-scores
 SH_SCRIPTS := aoc.sh aoc-leaderboard.sh aoc-completion.sh
-PREFIX := /usr/local
+PREFIX ?= /usr/local
 GO_BUILDS := $(patsubst %,build/%,$(GO_PROGRAMS))
 SH_BUILDS := $(patsubst %.sh,build/%,$(SH_SCRIPTS))
 GO_INSTALLS := $(patsubst %,$(PREFIX)/bin/%,$(GO_PROGRAMS))
@@ -21,7 +21,7 @@ build/aoc-leaderboard: aoc-leaderboard.sh
 	sed -e 's/@@DEFAULT_LEADERBOARD@@/$(DEFAULT_LEADERBOARD)/g' < $< > $@
 	chmod ugo+x $@
 
-build/aoc-completion: aoc-completion.sh Makefile
+build/aoc-completion: aoc-completion.sh
 	mkdir -p build
 	cp $< $@
 	chmod ugo+x $@
@@ -45,7 +45,7 @@ $(GO_INSTALLS) $(SH_INSTALLS): $(PREFIX)/bin/%: build/%
 	install -d $(PREFIX)/bin
 	install -m 755 $< $@
 
-install: $(GO_INSTALLS) $(SH_INSTALLS) ## Install all binaries
+install: $(GO_INSTALLS) $(SH_INSTALLS) ## Install all binaries to /usr/local or to $PREFIX if env variable set
 
 help: ## Show this help
 	@echo "These are the make commands for AoC Utilities.\n"
