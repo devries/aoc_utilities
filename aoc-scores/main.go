@@ -167,9 +167,7 @@ func main() {
 	users := []UserSortable{}
 	for _, n := range memberNumbers {
 		ts := int64(s.Members[n].LastStarTs)
-		if ts == 0 {
-			users = append(users, UserSortable{s.Members[n].Name, 0, 0})
-		} else {
+		if ts != 0 {
 			users = append(users, UserSortable{s.Members[n].Name, s.Members[n].Stars, ts})
 		}
 	}
