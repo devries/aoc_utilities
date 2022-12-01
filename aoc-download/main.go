@@ -51,6 +51,7 @@ func main() {
 		os.Exit(4)
 	}
 	req.AddCookie(c)
+	req.Header.Set("User-Agent", "github.com/devries/aoc_utilities by devries@idolstarastronomer.com")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
