@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/spf13/pflag"
 )
 
 type StarTs int64
@@ -72,13 +74,31 @@ func (a ByScore) Less(i, j int) bool {
 	return a[i].Finish < a[j].Finish
 }
 
+func myUsage() {
+	fmt.Fprintf(os.Stderr, "Usage: %s [OPTIONS] <scorefile>\n", os.Args[0])
+	pflag.PrintDefaults()
+}
+
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "Usage: %s <scorefile>\n", os.Args[0])
+	verbose := pflag.BoolP("verbose", "v", false, "show everyone, even nonparticipating members")
+	helpFlag := pflag.BoolP("help", "h", false, "show help")
+
+	pflag.Usage = myUsage
+	pflag.Parse()
+
+	if *helpFlag {
+		myUsage()
+		os.Exit(0)
+	}
+
+	args := pflag.Args()
+	fmt.Println(args)
+	if len(args) != 1 {
+		myUsage()
 		os.Exit(1)
 	}
 
-	f, err := os.Open(os.Args[1])
+	f, err := os.Open(args[0])
 	check(err)
 
 	decoder := json.NewDecoder(f)
@@ -167,7 +187,7 @@ func main() {
 	users := []UserSortable{}
 	for _, n := range memberNumbers {
 		ts := int64(s.Members[n].LastStarTs)
-		if ts != 0 {
+		if *verbose || ts != 0 {
 			users = append(users, UserSortable{s.Members[n].Name, s.Members[n].Stars, ts})
 		}
 	}
