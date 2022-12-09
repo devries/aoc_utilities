@@ -51,6 +51,14 @@ type Member struct {
 	LastStarTs         StarTs                     `json:"last_star_ts"`
 }
 
+func (m Member) GetName() string {
+	if m.Name == "" {
+		return fmt.Sprintf("(anonymous user #%s)", m.Id)
+	}
+
+	return m.Name
+}
+
 type Scoreboard struct {
 	Members map[int]Member `json:"members"`
 	Event   string         `json:"event"`
@@ -113,7 +121,7 @@ func main() {
 	maxNameLength := 0
 	for k := range s.Members {
 		memberNumbers = append(memberNumbers, k)
-		nameLength := len(s.Members[k].Name)
+		nameLength := len(s.Members[k].GetName())
 		if nameLength > maxNameLength {
 			maxNameLength = nameLength
 		}
@@ -141,7 +149,7 @@ func main() {
 					continue
 				}
 
-				users = append(users, UserSortable{s.Members[n].Name, 1, int64(completion.GetStarTs)})
+				users = append(users, UserSortable{s.Members[n].GetName(), 1, int64(completion.GetStarTs)})
 			}
 			sort.Sort(ByScore(users))
 			if len(users) > 0 {
@@ -166,7 +174,7 @@ func main() {
 
 					ts2 := int64(completion2.GetStarTs)
 					ts1 := int64(completion1.GetStarTs)
-					users = append(users, UserSortable{s.Members[n].Name, 1, ts2 - ts1})
+					users = append(users, UserSortable{s.Members[n].GetName(), 1, ts2 - ts1})
 				}
 			}
 		}
@@ -188,7 +196,7 @@ func main() {
 	for _, n := range memberNumbers {
 		ts := int64(s.Members[n].LastStarTs)
 		if *verbose || ts != 0 {
-			users = append(users, UserSortable{s.Members[n].Name, s.Members[n].Stars, ts})
+			users = append(users, UserSortable{s.Members[n].GetName(), s.Members[n].Stars, ts})
 		}
 	}
 	sort.Sort(ByScore(users))
