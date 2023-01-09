@@ -10,7 +10,7 @@ var testInput = `TEST INPUT GOES HERE`
 func TestSolution(t *testing.T) {
 	tests := []struct {
 		input  string
-		answer int
+		answer int64
 	}{
 		{testInput, 0},
 	}

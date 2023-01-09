@@ -21,7 +21,7 @@ func main() {
 	fmt.Println(r)
 }
 
-func solve(r io.Reader) int {
+func solve(r io.Reader) int64 {
 	lines := utils.ReadLines(r)
 
 	if utils.Verbose {
