@@ -1,11 +1,11 @@
-GO_PROGRAMS := aoc-download aoc-start aoc-scores
+GO_PROGRAMS := aoc-download aoc-scores
 SH_SCRIPTS := aoc.sh aoc-leaderboard.sh aoc-completion.sh
 PREFIX ?= /usr/local
 GO_BUILDS := $(patsubst %,build/%,$(GO_PROGRAMS))
 SH_BUILDS := $(patsubst %.sh,build/%,$(SH_SCRIPTS))
 GO_INSTALLS := $(patsubst %,$(PREFIX)/bin/%,$(GO_PROGRAMS))
 SH_INSTALLS := $(patsubst %.sh,$(PREFIX)/bin/%,$(SH_SCRIPTS))
-TEMPLATES := aoc-start/template/main.go aoc-start/template/main_test.go
+# TEMPLATES := aoc-start/template/main.go aoc-start/template/main_test.go
 DEFAULT_LEADERBOARD := 534400
 .PHONY: build clean install
 
@@ -29,9 +29,9 @@ build/aoc-completion: aoc-completion.sh
 go.sum: go.mod
 	go mod tidy
 
-build/aoc-start: go.mod go.sum aoc-start/main.go $(TEMPLATES)
-	mkdir -p build
-	go build -o $@ ./$(notdir $@)
+# build/aoc-start: go.mod go.sum aoc-start/main.go $(TEMPLATES)
+# 	mkdir -p build
+# 	go build -o $@ ./$(notdir $@)
 
 build/aoc-%: go.mod go.sum aoc-%/main.go
 	mkdir -p build

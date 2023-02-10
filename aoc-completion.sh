@@ -15,7 +15,6 @@ _aoc_completion() {
     download) _aoc_download_completion ;;
     leaderboard) _aoc_leaderboard_completion ;;
     scores) _aoc_scores_completion ;;
-    start) _aoc_start_completion ;;
   esac
 }
 
@@ -32,11 +31,6 @@ _aoc_leaderboard_completion() {
 _aoc_scores_completion() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   COMPREPLY=()
-}
-
-_aoc_start_completion() {
-  local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=($(compgen -W "-d --day -h --help -y --year" -- "$cur"))
 }
 
 complete -o default -F _aoc_completion aoc
