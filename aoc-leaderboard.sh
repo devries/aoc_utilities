@@ -25,4 +25,4 @@ do case $opt in
 esac
 done
 
-curl -A "github.com/devries/aoc_utilities by devries@idolstarastronomer.com" --cookie session=${AOC_SESSION} https://adventofcode.com/$year/leaderboard/private/view/$leaderboard.json > $leaderboard.json
+curl -A "github.com/devries/aoc_utilities by devries@idolstarastronomer.com" --cookie session=${AOC_SESSION} https://adventofcode.com/$year/leaderboard/private/view/$leaderboard.json
