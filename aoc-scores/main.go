@@ -127,7 +127,7 @@ func main() {
 		}
 	}
 
-	eventYear, err := strconv.ParseInt(s.Event, 10, 64)
+	eventYear, err := strconv.ParseInt(s.Event, 10, 32)
 	check(err)
 
 	now := time.Now()
