@@ -28,6 +28,6 @@ Please do your part by following the rules below:
 
 - Aim to download each day's input only once. On occasion there may be an issue
   that requires that you download it twice, but this should be rare.
-- Do not download the leaderboard mode than once every 15 minutes.
+- Do not download the leaderboard more than once every 15 minutes.
 
 Thank you for keeping the load on Advent of Code's servers to a minimum.
