@@ -100,7 +100,6 @@ func main() {
 	}
 
 	args := pflag.Args()
-	fmt.Println(args)
 	if len(args) != 1 {
 		myUsage()
 		os.Exit(1)
